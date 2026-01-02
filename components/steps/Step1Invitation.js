@@ -1,21 +1,48 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styles from '../../styles/Step.module.css'
 
 export default function Step1Invitation({ data, onNext }) {
-  // Informations d'entreprise fictives déjà existantes
-  const companyInfo = {
-    name: 'TechCorp Solutions',
-    email: 'contact@techcorp-solutions.com',
-    industry: 'Technologie',
-    size: '51-200 employés',
-    adminName: 'Marie Dubois',
-    adminEmail: 'marie.dubois@techcorp-solutions.com',
-    invitedBy: 'Jean Martin',
-    invitedDate: '15 janvier 2024'
-  }
+  const [companyInfo, setCompanyInfo] = useState(data?.companyInfo || {
+    name: '',
+    email: '',
+    industry: '',
+    size: '',
+    adminName: '',
+    adminEmail: '',
+    invitedBy: '',
+    invitedDate: ''
+  })
+  const [loading, setLoading] = useState(!data?.companyInfo)
+
+  useEffect(() => {
+    // Si les données ne sont pas déjà disponibles via props, on les récupère depuis l'API
+    if (!data?.companyInfo) {
+      fetch('/api/transaction-data')
+        .then(res => res.json())
+        .then(apiData => {
+          setCompanyInfo(apiData.companyInfo)
+          setLoading(false)
+        })
+        .catch(error => {
+          console.error('Erreur lors de la récupération des données:', error)
+          setLoading(false)
+        })
+    }
+  }, [data?.companyInfo])
 
   const handleJoin = () => {
-    onNext({ invitationAccepted: true })
+    onNext({ invitationAccepted: true, companyInfo })
+  }
+
+  if (loading) {
+    return (
+      <div className={styles.stepForm}>
+        <div className={styles.stepHeader}>
+          <h1 className={styles.stepTitle}>Invitation HubSpot Pro</h1>
+          <p className={styles.stepDescription}>Chargement des informations...</p>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -31,7 +58,7 @@ export default function Step1Invitation({ data, onNext }) {
         <div className={styles.invitationHeader}>
           <div className={styles.companyLogo}>
             <div className={styles.logoPlaceholder}>
-              {companyInfo.name.charAt(0)}
+              {companyInfo.name ? companyInfo.name.charAt(0) : ''}
             </div>
           </div>
           <div className={styles.companyInfo}>

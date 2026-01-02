@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Step1Invitation from './steps/Step1Invitation'
 import Step2Permissions from './steps/Step2Permissions'
 import Step3WhyJoin from './steps/Step3WhyJoin'
@@ -15,6 +15,7 @@ export default function OnboardingFlow({ onStepChange }) {
   const [formData, setFormData] = useState({
     // Step 1: Invitation
     invitationAccepted: false,
+    companyInfo: null,
     // Step 2: Permissions
     joinPassword: '',
     // Step 3: Why join
@@ -39,6 +40,18 @@ export default function OnboardingFlow({ onStepChange }) {
     // Step 9: Verify identity
     verified: false
   })
+
+  // Récupération des données de l'entreprise au chargement
+  useEffect(() => {
+    fetch('/api/transaction-data')
+      .then(res => res.json())
+      .then(data => {
+        setFormData(prev => ({ ...prev, companyInfo: data.companyInfo }))
+      })
+      .catch(error => {
+        console.error('Erreur lors de la récupération des données:', error)
+      })
+  }, [])
 
   const handleNext = (stepData) => {
     setFormData(prev => ({ ...prev, ...stepData }))
