@@ -1,0 +1,29 @@
+.onboardingContainer {
+  width: 100%;
+  max-width: 600px;
+  padding: 3rem;
+}
+
+
+.stepIndicator {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.stepNumber {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stepContent {
+  min-height: 400px;
+}
+
+@media (max-width: 768px) {
+  .onboardingContainer {
+    padding: 2rem 1.5rem;
+  }
+}
