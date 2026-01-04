@@ -9,7 +9,7 @@ export default function Step8Policies({ data, onNext, onBack }) {
   const policies = [
     {
       id: 'terms',
-      title: 'Conditions d\'utilisation',
+      title: "Conditions d'utilisation",
       content: `En utilisant HubSpot, vous acceptez de respecter nos conditions d'utilisation. 
       Vous vous engagez à utiliser la plateforme de manière légale et éthique, à ne pas violer 
       les droits de propriété intellectuelle, et à ne pas utiliser le service à des fins frauduleuses 
@@ -60,7 +60,7 @@ export default function Step8Policies({ data, onNext, onBack }) {
     },
     {
       id: 'verification',
-      title: 'Vérification d\'identité et données',
+      title: "Vérification d'identité et données",
       content: `Dans le cadre de la sécurisation de votre compte et de la conformité réglementaire, 
       HubSpot peut nécessiter une confirmation de votre identité ainsi que la soumission de certaines 
       informations vérifiables. Ces procédures permettent d'assurer l'intégrité de la plateforme et 
@@ -124,7 +124,7 @@ export default function Step8Policies({ data, onNext, onBack }) {
             className={styles.checkbox}
           />
           <span className={styles.acceptanceText}>
-            J'accepte les conditions d'utilisation HubSpot Pro.
+            {"J'accepte les conditions d'utilisation HubSpot Pro."}
           </span>
         </label>
       </div>

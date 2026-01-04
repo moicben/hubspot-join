@@ -20,12 +20,12 @@ export default function Step2Permissions({ data, onNext, onBack }) {
   const freeAccountPermissions = [
     {
       title: 'Gestion des contacts',
-      description: 'Ajouter, modifier et supprimer jusqu\'à 1 000 contacts',
+      description: "Ajouter, modifier et supprimer jusqu'à 1 000 contacts",
       icon: ContactsIcon
     },
     {
       title: 'Email marketing',
-      description: 'Envoyer jusqu\'à 2 000 emails par mois',
+      description: "Envoyer jusqu'à 2 000 emails par mois",
       icon: EmailIcon
     },
     {
@@ -35,7 +35,7 @@ export default function Step2Permissions({ data, onNext, onBack }) {
     },
     {
       title: 'Intégrations',
-      description: 'Connecter jusqu\'à 5 intégrations tierces',
+      description: "Connecter jusqu'à 5 intégrations tierces",
       icon: IntegrationsIcon
     },
     {
@@ -55,7 +55,7 @@ export default function Step2Permissions({ data, onNext, onBack }) {
 
   const validate = () => {
     if (!password.trim()) {
-      setErrors({ password: 'Le mot de passe est requis pour rejoindre l\'entreprise' })
+      setErrors({ password: "Le mot de passe est requis pour rejoindre l'entreprise" })
       return false
     }
     return true
@@ -96,7 +96,7 @@ export default function Step2Permissions({ data, onNext, onBack }) {
 
       <div className={styles.formGroup}>
         <label htmlFor="joinPassword" className={styles.label}>
-          Code d'invitation *
+          {"Code d'invitation *"}
         </label>
         <div className={styles.passwordInputWrapper}>
           <input
@@ -124,7 +124,7 @@ export default function Step2Permissions({ data, onNext, onBack }) {
           <span className={styles.errorMessage}>{errors.password}</span>
         )}
         <p className={styles.helpText}>
-          Ce code vous a été communiqué dans l'email d'invitation.
+          {"Ce code vous a été communiqué dans l'email d'invitation."}
         </p>
       </div>
 

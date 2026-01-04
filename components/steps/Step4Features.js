@@ -47,7 +47,7 @@ export default function Step4Features({ data, onNext, onBack }) {
   return (
     <form onSubmit={handleSubmit} className={styles.stepForm}>
       <div className={styles.stepHeader}>
-        <h1 className={styles.stepTitle}>Quelles fonctionnalités prévoyez-vous d'utiliser ?</h1>
+        <h1 className={styles.stepTitle}>{"Quelles fonctionnalités prévoyez-vous d'utiliser ?"}</h1>
         <p className={styles.stepDescription}>
           Sélectionnez les fonctionnalités HubSpot que vous souhaitez utiliser. 
           Cela nous aide à personnaliser votre expérience.

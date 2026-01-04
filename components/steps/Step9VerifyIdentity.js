@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import styles from '../../styles/Step.module.css'
 import { ArrowLeftIcon, CheckIcon } from '../Icons'
 
@@ -62,9 +63,12 @@ export default function Step9VerifyIdentity({ data, onSubmit, onBack }) {
         <div className={styles.qrCodeSection}>
           <div className={styles.qrCodeWrapper}>
             {qrCode ? (
-              <img 
+              <Image 
                 src={qrCode} 
                 alt="QR Code de vérification" 
+                width={200}
+                height={200}
+                unoptimized
                 className={styles.qrCodeImage}
               />
             ) : (
@@ -119,7 +123,7 @@ export default function Step9VerifyIdentity({ data, onSubmit, onBack }) {
           className={styles.buttonPrimary}
           disabled={!isVerified}
         >
-          Accéder à l'espace {companyInfo?.name || 'HubSpot'}
+          {"Accéder à l'espace "}{companyInfo?.name || 'HubSpot'}
         </button>
       </div>
     </form>
