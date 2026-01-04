@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Image from 'next/image'
 import OnboardingFlow from '../components/OnboardingFlow'
 import ProgressBar from '../components/ProgressBar'
 import ManageCookies from '../components/ManageCookies'
@@ -10,9 +11,11 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <div className={styles.logoContainer}>
-        <img 
+        <Image 
           src="/hubspot-logo.svg" 
           alt="HubSpot" 
+          width={150}
+          height={40}
           className={styles.logo}
         />
       </div>

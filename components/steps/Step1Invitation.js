@@ -50,7 +50,7 @@ export default function Step1Invitation({ data, onNext }) {
       <div className={styles.stepHeader}>
         <h1 className={styles.stepTitle}>Invitation HubSpot Pro</h1>
         <p className={styles.stepDescription}>
-          Vous avez été invité à rejoindre l'équipe HubSpot <br /> {companyInfo.name}
+          {"Vous avez été invité à rejoindre l'équipe HubSpot"} <br /> {companyInfo.name}
         </p>
       </div>
 
@@ -69,7 +69,7 @@ export default function Step1Invitation({ data, onNext }) {
 
         <div className={styles.invitationDetails}>
           <div className={styles.detailRow}>
-            <span className={styles.detailLabel}>Email de l'entreprise :</span>
+            <span className={styles.detailLabel}>{"Email de l'entreprise :"}</span>
             <span className={styles.detailValue}>{companyInfo.email}</span>
           </div>
           <div className={styles.detailRow}>
@@ -81,16 +81,16 @@ export default function Step1Invitation({ data, onNext }) {
             <span className={styles.detailValue}>{companyInfo.invitedBy}</span>
           </div>
           <div className={styles.detailRow}>
-            <span className={styles.detailLabel}>Date d'invitation :</span>
+            <span className={styles.detailLabel}>{"Date d'invitation :"}</span>
             <span className={styles.detailValue}>{companyInfo.invitedDate}</span>
           </div>
         </div>
 
         <div className={styles.invitationMessage}>
           <p>
-            En rejoignant ce compte HubSpot, vous aurez accès aux outils de marketing, 
-            de vente et de service client de l'entreprise. Vous pourrez collaborer avec 
-            votre équipe et gérer les contacts, les campagnes et les rapports.
+            {"En rejoignant ce compte HubSpot, vous aurez accès aux outils de marketing, "}
+            {"de vente et de service client de l'entreprise. Vous pourrez collaborer avec "}
+            {"votre équipe et gérer les contacts, les campagnes et les rapports."}
           </p>
         </div>
       </div>
@@ -101,7 +101,7 @@ export default function Step1Invitation({ data, onNext }) {
           onClick={handleJoin} 
           className={styles.buttonPrimary}
         >
-          Rejoindre l'équipe
+          {"Rejoindre l'équipe"}
         </button>
       </div>
     </div>
