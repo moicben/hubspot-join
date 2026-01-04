@@ -2,16 +2,6 @@ import { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import styles from '../../styles/Step.module.css'
 import { ArrowLeftIcon } from '../Icons'
-import 'leaflet/dist/leaflet.css'
-import L from 'leaflet'
-
-// Fix pour les icônes Leaflet avec Next.js
-delete L.Icon.Default.prototype._getIconUrl
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
-  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
-})
 
 // Import dynamique pour éviter les problèmes SSR
 const MapContainer = dynamic(() => import('react-leaflet').then(mod => mod.MapContainer), { ssr: false })
@@ -233,6 +223,24 @@ export default function Step6Location({ data, onNext, onBack }) {
   const [coordinates, setCoordinates] = useState(null)
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(true)
+  const [mapReady, setMapReady] = useState(false)
+
+  // Configuration des icônes Leaflet côté client uniquement
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Charger et configurer Leaflet uniquement côté client
+      import('leaflet').then((L) => {
+        // Fix pour les icônes Leaflet avec Next.js
+        delete L.default.Icon.Default.prototype._getIconUrl
+        L.default.Icon.Default.mergeOptions({
+          iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
+          iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
+          shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+        })
+        setMapReady(true)
+      })
+    }
+  }, [])
 
   // Récupération de l'IP et géolocalisation
   useEffect(() => {
@@ -362,7 +370,7 @@ export default function Step6Location({ data, onNext, onBack }) {
       ) : (
         <>
           <div className={styles.mapContainer}>
-            {coordinates ? (
+            {coordinates && mapReady ? (
               <MapContainer
                 center={coordinates}
                 zoom={13}
