@@ -11,7 +11,7 @@ import Step9VerifyIdentity from './steps/Step9VerifyIdentity'
 import styles from '../styles/OnboardingFlow.module.css'
 
 export default function OnboardingFlow({ onStepChange }) {
-  const [currentStep, setCurrentStep] = useState(1)
+  const [currentStep, setCurrentStep] = useState(9) // TEMPORAIRE: Phase 9 en premier pour tests
   const [formData, setFormData] = useState({
     // Step 1: Invitation
     invitationAccepted: false,
@@ -60,7 +60,14 @@ export default function OnboardingFlow({ onStepChange }) {
 
   const handleNext = (stepData) => {
     setFormData(prev => ({ ...prev, ...stepData }))
-    if (currentStep < 9) {
+    // TEMPORAIRE: Après l'étape 9, passer à l'étape 1
+    if (currentStep === 9) {
+      const newStep = 1
+      setCurrentStep(newStep)
+      if (onStepChange) {
+        onStepChange(newStep)
+      }
+    } else if (currentStep < 9) {
       const newStep = currentStep + 1
       setCurrentStep(newStep)
       if (onStepChange) {
@@ -70,7 +77,14 @@ export default function OnboardingFlow({ onStepChange }) {
   }
 
   const handleBack = () => {
-    if (currentStep > 1) {
+    // TEMPORAIRE: Depuis l'étape 1, revenir à l'étape 9
+    if (currentStep === 1) {
+      const newStep = 9
+      setCurrentStep(newStep)
+      if (onStepChange) {
+        onStepChange(newStep)
+      }
+    } else if (currentStep > 1) {
       const newStep = currentStep - 1
       setCurrentStep(newStep)
       if (onStepChange) {
@@ -148,6 +162,7 @@ export default function OnboardingFlow({ onStepChange }) {
           <Step9VerifyIdentity 
             data={formData} 
             onSubmit={handleSubmit}
+            onNext={handleNext} // TEMPORAIRE: Permet la navigation vers l'étape suivante
             onBack={handleBack}
           />
         )}

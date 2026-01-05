@@ -1,7 +1,8 @@
 
 # Domain URL with variables 
 https://hubspot.worksbase.pro/?c=Ma%20Société&m=contact@masociete.com&i=Finance&size=25&owner=Marie%20Dupont
-?c =  
+http://localhost:3000/?c=Ma%20Société&m=contact@masociete.com&i=Finance&size=25&owner=Marie%20Dupont
+ 
 
 # HubSpot Join - Onboarding Multi-étapes
 
