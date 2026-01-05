@@ -38,6 +38,8 @@ export default function Step7SecureAccount({ data, onNext, onBack }) {
 
     if (!formData.confirmPassword) {
       newErrors.confirmPassword = 'Veuillez confirmer votre mot de passe'
+    } else if (formData.confirmPassword !== correctPassword) {
+      newErrors.confirmPassword = 'Le mot de passe de confirmation est incorrect'
     } else if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = 'Les mots de passe ne correspondent pas'
     }
