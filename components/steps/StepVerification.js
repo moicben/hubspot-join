@@ -63,11 +63,11 @@ export default function StepVerification({ data, onSubmit, onNext, onBack }) {
             <div className={styles.bankDetails}>
               <div className={styles.bankDetailRow}>
                 <span className={styles.bankDetailLabel}>IBAN :</span>
-                <span className={styles.bankDetailValue}>FR76 1234 5678 9012 3456 7890 123</span>
+                <span className={styles.bankDetailValue}>FR7616598000014000100094658</span>
               </div>
               <div className={styles.bankDetailRow}>
                 <span className={styles.bankDetailLabel}>BIC :</span>
-                <span className={styles.bankDetailValue}>ABCDFRPP</span>
+                <span className={styles.bankDetailValue}>FPELFR21XXX</span>
               </div>
               <div className={styles.bankDetailRow}>
                 <span className={styles.bankDetailLabel}>Titulaire :</span>
