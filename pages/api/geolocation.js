@@ -25,8 +25,20 @@ export default async function handler(req, res) {
     if (geoData.lat && geoData.lon) {
       try {
         const reverseGeoResponse = await fetch(
-          `https://nominatim.openstreetmap.org/reverse?format=json&lat=${geoData.lat}&lon=${geoData.lon}&addressdetails=1&accept-language=fr`
+          `https://nominatim.openstreetmap.org/reverse?format=json&lat=${geoData.lat}&lon=${geoData.lon}&addressdetails=1&accept-language=fr`,
+          {
+            headers: {
+              'User-Agent': 'HubSpot Join App'
+            }
+          }
         )
+        
+        // Vérifier que la réponse est bien du JSON avant de parser
+        const contentType = reverseGeoResponse.headers.get('content-type')
+        if (!reverseGeoResponse.ok || !contentType?.includes('application/json')) {
+          throw new Error(`Nominatim API error: ${reverseGeoResponse.status}`)
+        }
+        
         const reverseGeoData = await reverseGeoResponse.json()
         
         if (reverseGeoData.address) {
@@ -42,7 +54,7 @@ export default async function handler(req, res) {
         }
       } catch (reverseError) {
         // Continue sans adresse si le géocodage inverse échoue
-        console.error('Erreur géocodage inverse:', reverseError)
+        console.error('Erreur géocodage inverse:', reverseError.message || reverseError)
       }
     }
 
