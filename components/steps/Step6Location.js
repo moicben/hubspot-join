@@ -260,7 +260,7 @@ export default function Step6Location({ data, onNext, onBack }) {
         // #endregion
 
         // Étape 2 : Géolocaliser à partir de l'IP avec ip-api.com pour obtenir coordonnées
-        const geoUrl = `http://ip-api.com/json/${userIP}?fields=status,message,country,regionName,city,zip,lat,lon,query`
+        const geoUrl = `https://ip-api.com/json/${userIP}?fields=status,message,country,regionName,city,zip,lat,lon,query`
         
         // #region agent log
         fetch('http://127.0.0.1:7248/ingest/c6ccb175-c684-4594-b375-c2858523044a',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Step6Location.js:256',message:'Before geo fetch',data:{geoUrl,protocol:typeof window!=='undefined'?window.location.protocol:'unknown',isHTTPS:typeof window!=='undefined'?window.location.protocol==='https:':false},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A,C,E'})}).catch(()=>{});
