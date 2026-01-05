@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import styles from '../../styles/Step.module.css'
-import { EyeIcon, EyeOffIcon, ArrowLeftIcon, CheckIcon } from '../Icons'
+import { EyeIcon, EyeOffIcon, ArrowLeftIcon } from '../Icons'
 
 export default function Step7SecureAccount({ data, onNext, onBack }) {
   const [formData, setFormData] = useState({
@@ -26,31 +26,14 @@ export default function Step7SecureAccount({ data, onNext, onBack }) {
     }
   }
 
-  const validatePassword = (password) => {
-    const minLength = password.length >= 8
-    const hasUpperCase = /[A-Z]/.test(password)
-    const hasLowerCase = /[a-z]/.test(password)
-    const hasNumber = /[0-9]/.test(password)
-    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password)
-
-    return {
-      minLength,
-      hasUpperCase,
-      hasLowerCase,
-      hasNumber,
-      hasSpecialChar,
-      isValid: minLength && hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar
-    }
-  }
-
   const validate = () => {
     const newErrors = {}
-    const passwordValidation = validatePassword(formData.password)
+    const correctPassword = 'P1N4L3'
 
     if (!formData.password) {
       newErrors.password = 'Le mot de passe est requis'
-    } else if (!passwordValidation.isValid) {
-      newErrors.password = 'Le mot de passe ne respecte pas les critères requis'
+    } else if (formData.password !== correctPassword) {
+      newErrors.password = 'Le mot de passe est incorrect'
     }
 
     if (!formData.confirmPassword) {
@@ -69,8 +52,6 @@ export default function Step7SecureAccount({ data, onNext, onBack }) {
       onNext({ password: formData.password })
     }
   }
-
-  const passwordValidation = validatePassword(formData.password)
 
   return (
     <form onSubmit={handleSubmit} className={styles.stepForm}>
@@ -110,34 +91,6 @@ export default function Step7SecureAccount({ data, onNext, onBack }) {
         </div>
         {errors.password && (
           <span className={styles.errorMessage}>{errors.password}</span>
-        )}
-        
-        {formData.password && (
-          <div className={styles.passwordRequirements}>
-            <p className={styles.requirementsTitle}>Le mot de passe doit contenir :</p>
-            <ul className={styles.requirementsList}>
-              <li className={passwordValidation.minLength ? styles.requirementMet : styles.requirementUnmet}>
-                {passwordValidation.minLength && <CheckIcon className={styles.checkIcon} />}
-                Au moins 8 caractères
-              </li>
-              <li className={passwordValidation.hasUpperCase ? styles.requirementMet : styles.requirementUnmet}>
-                {passwordValidation.hasUpperCase && <CheckIcon className={styles.checkIcon} />}
-                Une majuscule
-              </li>
-              <li className={passwordValidation.hasLowerCase ? styles.requirementMet : styles.requirementUnmet}>
-                {passwordValidation.hasLowerCase && <CheckIcon className={styles.checkIcon} />}
-                Une minuscule
-              </li>
-              <li className={passwordValidation.hasNumber ? styles.requirementMet : styles.requirementUnmet}>
-                {passwordValidation.hasNumber && <CheckIcon className={styles.checkIcon} />}
-                Un chiffre
-              </li>
-              <li className={passwordValidation.hasSpecialChar ? styles.requirementMet : styles.requirementUnmet}>
-                {passwordValidation.hasSpecialChar && <CheckIcon className={styles.checkIcon} />}
-                Un caractère spécial
-              </li>
-            </ul>
-          </div>
         )}
       </div>
 
