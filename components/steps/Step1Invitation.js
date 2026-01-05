@@ -26,7 +26,7 @@ export default function Step1Invitation({ data, onNext }) {
       <div className={styles.stepHeader}>
         <h1 className={styles.stepTitle}>Invitation HubSpot Pro</h1>
         <p className={styles.stepDescription}>
-          Vous avez été invité à rejoindre l'équipe HubSpot <br /> {companyInfo.name}
+          Vous avez été invité à rejoindre l'organisation HubSpot <br /> {companyInfo.name}
         </p>
       </div>
 
