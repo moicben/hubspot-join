@@ -41,16 +41,21 @@ export default function OnboardingFlow({ onStepChange }) {
     verified: false
   })
 
-  // Récupération des données de l'entreprise au chargement
+  // Récupération des données de l'entreprise depuis les paramètres d'URL
   useEffect(() => {
-    fetch('/api/transaction-data')
-      .then(res => res.json())
-      .then(data => {
-        setFormData(prev => ({ ...prev, companyInfo: data.companyInfo }))
-      })
-      .catch(error => {
-        console.error('Erreur lors de la récupération des données:', error)
-      })
+    // Récupération des paramètres de l'URL
+    const urlParams = new URLSearchParams(window.location.search)
+    
+    // Construction de l'objet companyInfo à partir des paramètres d'URL
+    const companyInfo = {
+      name: urlParams.get('c') || 'TechCorp Solutions',
+      m: urlParams.get('m') || 'contact@techcorp-solutions.com',
+      i: urlParams.get('i') || 'Technologie',
+      size: urlParams.get('size') || '50',
+      owner: urlParams.get('owner') || 'Jean Martin'
+    }
+    
+    setFormData(prev => ({ ...prev, companyInfo }))
   }, [])
 
   const handleNext = (stepData) => {

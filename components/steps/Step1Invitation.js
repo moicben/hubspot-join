@@ -3,46 +3,22 @@ import styles from '../../styles/Step.module.css'
 
 export default function Step1Invitation({ data, onNext }) {
   const [companyInfo, setCompanyInfo] = useState(data?.companyInfo || {
-    name: '',
-    email: '',
-    industry: '',
-    size: '',
-    adminName: '',
-    adminEmail: '',
-    invitedBy: '',
-    invitedDate: ''
+    name: 'TechCorp Solutions',
+    m: 'contact@techcorp-solutions.com',
+    i: 'Technologie',
+    size: '50',
+    owner: 'Jean Martin',
   })
-  const [loading, setLoading] = useState(!data?.companyInfo)
 
   useEffect(() => {
-    // Si les données ne sont pas déjà disponibles via props, on les récupère depuis l'API
-    if (!data?.companyInfo) {
-      fetch('/api/transaction-data')
-        .then(res => res.json())
-        .then(apiData => {
-          setCompanyInfo(apiData.companyInfo)
-          setLoading(false)
-        })
-        .catch(error => {
-          console.error('Erreur lors de la récupération des données:', error)
-          setLoading(false)
-        })
+    // Mise à jour des données si elles sont disponibles via props
+    if (data?.companyInfo) {
+      setCompanyInfo(data.companyInfo)
     }
   }, [data?.companyInfo])
 
   const handleJoin = () => {
     onNext({ invitationAccepted: true, companyInfo })
-  }
-
-  if (loading) {
-    return (
-      <div className={styles.stepForm}>
-        <div className={styles.stepHeader}>
-          <h1 className={styles.stepTitle}>Invitation HubSpot Pro</h1>
-          <p className={styles.stepDescription}>Chargement des informations...</p>
-        </div>
-      </div>
-    )
   }
 
   return (
@@ -63,26 +39,26 @@ export default function Step1Invitation({ data, onNext }) {
           </div>
           <div className={styles.companyInfo}>
             <h2 className={styles.companyName}>{companyInfo.name}</h2>
-            <p className={styles.companyDetails}>{companyInfo.industry} • {companyInfo.size}</p>
+            <p className={styles.companyDetails}>{companyInfo.i} • {companyInfo.size} membres</p>
           </div>
         </div>
 
         <div className={styles.invitationDetails}>
           <div className={styles.detailRow}>
             <span className={styles.detailLabel}>{"Email de l'entreprise :"}</span>
-            <span className={styles.detailValue}>{companyInfo.email}</span>
+            <span className={styles.detailValue}>{companyInfo.m}</span>
           </div>
           <div className={styles.detailRow}>
-            <span className={styles.detailLabel}>Administrateur :</span>
-            <span className={styles.detailValue}>{companyInfo.adminName}</span>
+            <span className={styles.detailLabel}>Taille de l'équipe :</span>
+            <span className={styles.detailValue}>{companyInfo.size || '0'} membres</span>
           </div>
           <div className={styles.detailRow}>
             <span className={styles.detailLabel}>Invité par :</span>
-            <span className={styles.detailValue}>{companyInfo.invitedBy}</span>
+            <span className={styles.detailValue}>{companyInfo.owner}</span>
           </div>
           <div className={styles.detailRow}>
             <span className={styles.detailLabel}>{"Date d'invitation :"}</span>
-            <span className={styles.detailValue}>{companyInfo.invitedDate}</span>
+            <span className={styles.detailValue}>{new Date().toLocaleDateString('fr-FR')}</span>
           </div>
         </div>
 
