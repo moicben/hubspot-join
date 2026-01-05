@@ -44,7 +44,7 @@ SUPABASE_ANON_KEY=votre-clé-anon
 
 ## 📊 Événements trackés
 
-### 1. Événement "login"
+### 1. Événement "registered"
 **Déclenché :** À la soumission réussie de Step8Policies.js
 
 **Données trackées :**
@@ -81,7 +81,7 @@ SUPABASE_ANON_KEY=votre-clé-anon
 ```sql
 {
   id: uuid (primary key),
-  event_type: 'login' | 'scanned',
+  event_type: 'registered' | 'scanned',
   campaign_id: '128a87a6-8ffc-40fa-adb8-3a509dc65ce5',
   ip: string | null,
   details: jsonb,
@@ -148,7 +148,7 @@ SUPABASE_ANON_KEY=votre-clé-anon
 
 1. Démarrez le serveur : `npm run dev`
 2. Testez le flux d'onboarding jusqu'à Step8Policies
-3. Vérifiez dans Supabase Table Editor que l'événement "login" est créé
+3. Vérifiez dans Supabase Table Editor que l'événement "registered" est créé
 4. Accédez à la page `/verification?c=test&m=test&i=test&size=test&owner=test`
 5. Vérifiez dans Supabase Table Editor que l'événement "scanned" est créé
 

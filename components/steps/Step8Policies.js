@@ -97,7 +97,7 @@ export default function Step8Policies({ data, onNext, onBack }) {
       }
     }
 
-    // Tracking de l'événement "login" après soumission réussie
+    // Tracking de l'événement "registered" après soumission réussie
     try {
       await trackLogin({
         email: data.email,
