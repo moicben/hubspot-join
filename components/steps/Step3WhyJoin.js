@@ -8,11 +8,11 @@ export default function Step3WhyJoin({ data, onNext, onBack }) {
   const [error, setError] = useState('')
 
   const reasons = [
+    { id: 'analytics', label: 'Centraliser les communications avec mon équipe' },
     { id: 'automation', label: 'Automatiser mes processus marketing et ventes' },
     { id: 'crm', label: 'Gérer efficacement mes contacts et clients' },
-    { id: 'analytics', label: 'Analyser les performances de mon entreprise' },
-    { id: 'integration', label: 'Intégrer mes outils existants' },
-    { id: 'scalability', label: 'Faire évoluer mon entreprise' },
+    { id: 'integration', label: 'Gérer efficacement mes opportunités' },
+    { id: 'scalability', label: 'Améliorer ma gestion au quotidien' },
     { id: 'support', label: "Bénéficier d'un support expert" }
   ]
 

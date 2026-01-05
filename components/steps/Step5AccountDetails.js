@@ -65,9 +65,9 @@ export default function Step5AccountDetails({ data, onNext, onBack }) {
   return (
     <form onSubmit={handleSubmit} className={styles.stepForm}>
       <div className={styles.stepHeader}>
-        <h1 className={styles.stepTitle}>Détails du compte</h1>
+        <h1 className={styles.stepTitle}>Informations du compte</h1>
         <p className={styles.stepDescription}>
-          Remplissez vos informations personnelles pour créer votre compte HubSpot.
+          Présentez-vous en quelques mots et devenez unique au sein de vos organisations HubSpot.
         </p>
       </div>
 

@@ -1,7 +1,11 @@
 .onboardingContainer {
   width: 100%;
   max-width: 600px;
-  padding: 3rem;
+  padding: 2rem 3rem;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 

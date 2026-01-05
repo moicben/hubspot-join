@@ -90,7 +90,7 @@ export default function Step8Policies({ data, onNext, onBack }) {
   return (
     <form onSubmit={handleSubmit} className={styles.stepForm}>
       <div className={styles.stepHeader}>
-        <h1 className={styles.stepTitle}>Politiques HubSpot</h1>
+        <h1 className={styles.stepTitle}>Politiques d'utilisation</h1>
         <p className={styles.stepDescription}>
           Veuillez lire et accepter les politiques suivantes pour continuer. 
           Faites défiler pour voir toutes les politiques.

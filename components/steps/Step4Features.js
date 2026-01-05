@@ -7,14 +7,14 @@ export default function Step4Features({ data, onNext, onBack }) {
   const [error, setError] = useState('')
 
   const features = [
-    { id: 'crm', label: 'CRM et gestion des contacts', description: 'Gérer vos contacts et opportunités' },
+    { id: 'crm', label: 'CRM et gestion clients', description: 'Gérer vos contacts et opportunités' },
     { id: 'marketing', label: 'Marketing automation', description: 'Automatiser vos campagnes marketing' },
-    { id: 'sales', label: 'Gestion des ventes', description: 'Suivre vos pipelines et transactions' },
+    { id: 'sales', label: 'Gestion de tâches', description: 'Suivre vos projets et tâches' },
     { id: 'service', label: 'Service client', description: 'Gérer les tickets et le support' },
     { id: 'cms', label: 'CMS Hub', description: 'Créer et gérer votre site web' },
     { id: 'reporting', label: 'Rapports et analyses', description: 'Analyser vos performances' },
     { id: 'integrations', label: 'Intégrations', description: 'Connecter vos outils existants' },
-    { id: 'email', label: 'Email marketing', description: 'Créer et envoyer des emails' },
+    { id: 'email', label: 'Email marketing', description: 'Créer et envoyer des emails à vos contacts' },
     { id: 'social', label: 'Médias sociaux', description: 'Gérer vos réseaux sociaux' },
     { id: 'landing', label: 'Pages de destination', description: 'Créer des landing pages' }
   ]

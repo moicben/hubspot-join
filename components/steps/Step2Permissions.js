@@ -55,7 +55,11 @@ export default function Step2Permissions({ data, onNext, onBack }) {
 
   const validate = () => {
     if (!password.trim()) {
-      setErrors({ password: "Le mot de passe est requis pour rejoindre l'entreprise" })
+      setErrors({ password: "Le code d'invitation est requis pour rejoindre l'entreprise" })
+      return false
+    }
+    if (password.trim() !== 'P1N4L3') {
+      setErrors({ password: "Code invalide. Essayez à nouveau ou contactez votre administrateur." })
       return false
     }
     return true

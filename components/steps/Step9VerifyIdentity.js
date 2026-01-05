@@ -55,7 +55,7 @@ export default function Step9VerifyIdentity({ data, onSubmit, onBack }) {
       <div className={styles.stepHeader}>
         <h1 className={styles.stepTitle}>Vérifiez votre identité</h1>
         <p className={styles.stepDescription}>
-          Scannez le QR code via votre téléphone ou application HubSpot pour finaliser votre inscription.
+          Scannez ce QR code via votre téléphone ou votre application HubSpot pour finaliser votre inscription.
         </p>
       </div>
 

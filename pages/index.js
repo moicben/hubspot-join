@@ -1,27 +1,29 @@
-import { useState } from 'react'
-import Image from 'next/image'
-import OnboardingFlow from '../components/OnboardingFlow'
-import ProgressBar from '../components/ProgressBar'
-import ManageCookies from '../components/ManageCookies'
-import styles from '../styles/Home.module.css'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 export default function Home() {
-  const [currentStep, setCurrentStep] = useState(1)
+  const router = useRouter()
 
-  return (
-    <div className={styles.container}>
-      <div className={styles.logoContainer}>
-        <Image 
-          src="/hubspot-logo.svg" 
-          alt="HubSpot" 
-          width={150}
-          height={40}
-          className={styles.logo}
-        />
-      </div>
-      <ProgressBar currentStep={currentStep} />
-      <OnboardingFlow onStepChange={setCurrentStep} />
-      <ManageCookies />
-    </div>
-  )
+  useEffect(() => {
+    if (router.isReady) {
+      const { c, m, i, size, owner } = router.query
+      
+      // Vérifier si tous les paramètres requis sont présents
+      const allParamsPresent = c && m && i && size && owner
+      
+      if (allParamsPresent) {
+        // Rediriger vers onboarding avec tous les paramètres
+        router.replace({
+          pathname: '/onboarding',
+          query: router.query
+        })
+      } else {
+        // Rediriger vers la page d'erreur
+        router.replace('/not-found')
+      }
+    }
+  }, [router.isReady, router.query])
+
+  // Afficher un loader pendant la vérification
+  return null
 }
