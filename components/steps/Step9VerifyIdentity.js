@@ -123,7 +123,7 @@ export default function Step9VerifyIdentity({ data, onSubmit, onBack }) {
           className={styles.buttonPrimary}
           disabled={!isVerified}
         >
-          {"Accéder à l'espace "}{companyInfo?.name || 'HubSpot'}
+          Accéder à l'espace {companyInfo?.name || 'HubSpot'}
         </button>
       </div>
     </form>

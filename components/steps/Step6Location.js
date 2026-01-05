@@ -53,7 +53,7 @@ const COUNTRIES = [
   'Corée du Nord',
   'Corée du Sud',
   'Costa Rica',
-  'Côte d\'Ivoire',
+  "Côte d'Ivoire",
   'Croatie',
   'Cuba',
   'Danemark',
@@ -331,7 +331,7 @@ export default function Step6Location({ data, onNext, onBack }) {
     const newErrors = {}
     
     if (!formData.address.trim()) {
-      newErrors.address = 'L\'adresse est requise'
+      newErrors.address = "L'adresse est requise"
     }
     
     if (!formData.city.trim()) {

@@ -40,7 +40,7 @@ export default function Step5AccountDetails({ data, onNext, onBack }) {
     }
     
     if (!formData.email.trim()) {
-      newErrors.email = 'L\'email est requis'
+      newErrors.email = "L'email est requis"
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Veuillez entrer un email valide'
     }

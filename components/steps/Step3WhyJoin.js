@@ -13,7 +13,7 @@ export default function Step3WhyJoin({ data, onNext, onBack }) {
     { id: 'analytics', label: 'Analyser les performances de mon entreprise' },
     { id: 'integration', label: 'Intégrer mes outils existants' },
     { id: 'scalability', label: 'Faire évoluer mon entreprise' },
-    { id: 'support', label: 'Bénéficier d\'un support expert' }
+    { id: 'support', label: "Bénéficier d'un support expert" }
   ]
 
   const handleReasonToggle = (reasonId) => {

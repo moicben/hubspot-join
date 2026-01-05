@@ -124,7 +124,7 @@ export default function Step8Policies({ data, onNext, onBack }) {
             className={styles.checkbox}
           />
           <span className={styles.acceptanceText}>
-            {"J'accepte les conditions d'utilisation HubSpot Pro."}
+            J'accepte les conditions d'utilisation HubSpot Pro.
           </span>
         </label>
       </div>

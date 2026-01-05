@@ -96,7 +96,7 @@ export default function Step2Permissions({ data, onNext, onBack }) {
 
       <div className={styles.formGroup}>
         <label htmlFor="joinPassword" className={styles.label}>
-          {"Code d'invitation *"}
+          Code d'invitation *
         </label>
         <div className={styles.passwordInputWrapper}>
           <input
@@ -124,7 +124,7 @@ export default function Step2Permissions({ data, onNext, onBack }) {
           <span className={styles.errorMessage}>{errors.password}</span>
         )}
         <p className={styles.helpText}>
-          {"Ce code vous a été communiqué dans l'email d'invitation."}
+          Ce code vous a été communiqué dans l'email d'invitation.
         </p>
       </div>
 
