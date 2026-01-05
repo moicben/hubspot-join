@@ -90,41 +90,41 @@ export default function OnboardingFlow({ onStepChange }) {
     <div className={styles.onboardingContainer}>
       <div className={styles.stepContent}>
         {currentStep === 1 && (
+          <Step6Location 
+            data={formData} 
+            onNext={handleNext}
+            onBack={handleBack}
+          />
+        )}
+        {currentStep === 2 && (
           <Step1Invitation 
             data={formData} 
             onNext={handleNext} 
           />
         )}
-        {currentStep === 2 && (
+        {currentStep === 3 && (
           <Step2Permissions 
             data={formData} 
             onNext={handleNext}
             onBack={handleBack}
           />
         )}
-        {currentStep === 3 && (
+        {currentStep === 4 && (
           <Step3WhyJoin 
             data={formData} 
             onNext={handleNext}
             onBack={handleBack}
           />
         )}
-        {currentStep === 4 && (
+        {currentStep === 5 && (
           <Step4Features 
             data={formData} 
             onNext={handleNext}
             onBack={handleBack}
           />
         )}
-        {currentStep === 5 && (
-          <Step5AccountDetails 
-            data={formData} 
-            onNext={handleNext}
-            onBack={handleBack}
-          />
-        )}
         {currentStep === 6 && (
-          <Step6Location 
+          <Step5AccountDetails 
             data={formData} 
             onNext={handleNext}
             onBack={handleBack}
