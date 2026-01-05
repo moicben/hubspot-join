@@ -48,11 +48,11 @@ export default function OnboardingFlow({ onStepChange }) {
     
     // Construction de l'objet companyInfo à partir des paramètres d'URL
     const companyInfo = {
-      name: urlParams.get('c') || 'TechCorp Solutions',
-      m: urlParams.get('m') || 'contact@techcorp-solutions.com',
-      i: urlParams.get('i') || 'Technologie',
-      size: urlParams.get('size') || '50',
-      owner: urlParams.get('owner') || 'Jean Martin'
+      name: urlParams.get('c'),
+      m: urlParams.get('m'),
+      i: urlParams.get('i'),
+      size: urlParams.get('size'),
+      owner: urlParams.get('owner')
     }
     
     setFormData(prev => ({ ...prev, companyInfo }))

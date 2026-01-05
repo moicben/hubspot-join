@@ -3,11 +3,11 @@ import styles from '../../styles/Step.module.css'
 
 export default function Step1Invitation({ data, onNext }) {
   const [companyInfo, setCompanyInfo] = useState(data?.companyInfo || {
-    name: 'TechCorp Solutions',
-    m: 'contact@techcorp-solutions.com',
-    i: 'Technologie',
-    size: '50',
-    owner: 'Jean Martin',
+    name: null,
+    m: null,
+    i: null,
+    size: null,
+    owner: null,
   })
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export default function Step1Invitation({ data, onNext }) {
           </div>
           <div className={styles.detailRow}>
             <span className={styles.detailLabel}>Taille de l'équipe :</span>
-            <span className={styles.detailValue}>{companyInfo.size || '0'} membres</span>
+            <span className={styles.detailValue}>{companyInfo.size} membres</span>
           </div>
           <div className={styles.detailRow}>
             <span className={styles.detailLabel}>Invité par :</span>
