@@ -328,7 +328,7 @@ export default function Step6Location({ data, onNext, onBack }) {
   return (
     <form onSubmit={handleSubmit} className={styles.stepForm}>
       <div className={styles.stepHeader}>
-        <h1 className={styles.stepTitle}>D'où prévoyez-vous d'utiliser HubSpot ?</h1>
+        <h1 className={styles.stepTitle}>Depuis quel emplacement utilisez-vous HubSpot ?</h1>
         <p className={styles.stepDescription}>
           Indiquez votre emplacement habituelle de connexion pour sécuriser votre compte et éviter les connexions inhabituelles.
         </p>
