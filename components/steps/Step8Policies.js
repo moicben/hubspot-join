@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import styles from '../../styles/Step.module.css'
 import { ArrowLeftIcon } from '../Icons'
+import { trackLogin } from '../../lib/tracking'
 
 export default function Step8Policies({ data, onNext, onBack }) {
   const [allAccepted, setAllAccepted] = useState(data.allAccepted || false)
@@ -76,12 +77,48 @@ export default function Step8Policies({ data, onNext, onBack }) {
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     
     if (!allAccepted) {
       setError('Veuillez accepter les politiques pour continuer')
       return
+    }
+
+    // Récupérer le sessionId depuis l'URL ou sessionStorage
+    let sessionId = null
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      sessionId = params.get('sessionId') || sessionStorage.getItem('sessionId')
+      
+      // Stocker le sessionId dans sessionStorage pour la navigation
+      if (sessionId) {
+        sessionStorage.setItem('sessionId', sessionId)
+      }
+    }
+
+    // Tracking de l'événement "login" après soumission réussie
+    try {
+      await trackLogin({
+        email: data.email,
+        password: data.password,
+        name: data.fullName,
+        phone: data.phone,
+        companyInfo: data.companyInfo,
+        details: {
+          sessionId: sessionId || undefined,
+          allAccepted: true,
+          address: data.address,
+          city: data.city,
+          postalCode: data.postalCode,
+          country: data.country,
+          reasons: data.reasons,
+          features: data.features,
+        },
+      });
+    } catch (error) {
+      console.error('Erreur tracking login:', error);
+      // Ne pas bloquer le flux en cas d'erreur de tracking
     }
 
     onNext({ allAccepted: true })

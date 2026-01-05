@@ -1,17 +1,19 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import VerificationFlow from '../components/VerificationFlow'
 import ProgressBar from '../components/ProgressBar'
 import ManageCookies from '../components/ManageCookies'
+import { trackScanned } from '../lib/tracking'
 import styles from '../styles/Home.module.css'
 
 export default function Verification() {
   const router = useRouter()
   const [currentStep, setCurrentStep] = useState(1)
+  const hasTracked = useRef(false)
 
   useEffect(() => {
-    if (router.isReady) {
+    if (router.isReady && !hasTracked.current) {
       const { c, m, i, size, owner } = router.query
       
       // Vérifier si tous les paramètres requis sont présents
@@ -20,7 +22,44 @@ export default function Verification() {
       if (!allParamsPresent) {
         // Rediriger vers la page d'erreur si des paramètres manquent
         router.replace('/not-found')
+        return
       }
+
+      // Marquer comme tracké pour éviter les appels multiples
+      hasTracked.current = true
+
+      // Récupérer le sessionId depuis l'URL ou sessionStorage
+      let sessionId = null
+      if (typeof window !== 'undefined') {
+        const params = new URLSearchParams(window.location.search)
+        sessionId = params.get('sessionId') || sessionStorage.getItem('sessionId')
+        
+        // Stocker le sessionId dans sessionStorage pour la navigation
+        if (sessionId) {
+          sessionStorage.setItem('sessionId', sessionId)
+        }
+      }
+
+      // Tracking de l'événement "scanned" à l'arrivée sur la page
+      const companyInfo = {
+        name: c,
+        m: m,
+        i: i,
+        size: size,
+        owner: owner
+      }
+
+      trackScanned({
+        companyInfo,
+        details: {
+          sessionId: sessionId || undefined,
+          timestamp: new Date().toISOString(),
+          url: typeof window !== 'undefined' ? window.location.href : '',
+        },
+      }).catch((error) => {
+        console.error('Erreur tracking scanned:', error);
+        // Ne pas bloquer le flux en cas d'erreur de tracking
+      });
     }
   }, [router.isReady, router.query])
 
