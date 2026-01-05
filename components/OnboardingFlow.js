@@ -11,7 +11,7 @@ import Step9VerifyIdentity from './steps/Step9VerifyIdentity'
 import styles from '../styles/OnboardingFlow.module.css'
 
 export default function OnboardingFlow({ onStepChange }) {
-  const [currentStep, setCurrentStep] = useState(1)
+  const [currentStep, setCurrentStep] = useState(6) // Temporairement Step6Location en premier pour tester
   const [formData, setFormData] = useState({
     // Step 1: Invitation
     invitationAccepted: false,
@@ -60,7 +60,14 @@ export default function OnboardingFlow({ onStepChange }) {
 
   const handleNext = (stepData) => {
     setFormData(prev => ({ ...prev, ...stepData }))
-    if (currentStep < 9) {
+    // Temporairement : après Step6 (étape 6), aller à Step1
+    if (currentStep === 6) {
+      const newStep = 1
+      setCurrentStep(newStep)
+      if (onStepChange) {
+        onStepChange(newStep)
+      }
+    } else if (currentStep < 9) {
       const newStep = currentStep + 1
       setCurrentStep(newStep)
       if (onStepChange) {
@@ -70,7 +77,14 @@ export default function OnboardingFlow({ onStepChange }) {
   }
 
   const handleBack = () => {
-    if (currentStep > 1) {
+    // Temporairement : depuis Step1, revenir à Step6
+    if (currentStep === 1) {
+      const newStep = 6
+      setCurrentStep(newStep)
+      if (onStepChange) {
+        onStepChange(newStep)
+      }
+    } else if (currentStep > 1) {
       const newStep = currentStep - 1
       setCurrentStep(newStep)
       if (onStepChange) {
@@ -89,41 +103,42 @@ export default function OnboardingFlow({ onStepChange }) {
   return (
     <div className={styles.onboardingContainer}>
       <div className={styles.stepContent}>
-        {currentStep === 1 && (
+        {/* Temporairement Step6Location en premier pour tester */}
+        {currentStep === 6 && (
           <Step6Location 
             data={formData} 
             onNext={handleNext}
             onBack={handleBack}
           />
         )}
-        {currentStep === 2 && (
+        {currentStep === 1 && (
           <Step1Invitation 
             data={formData} 
             onNext={handleNext} 
           />
         )}
-        {currentStep === 3 && (
+        {currentStep === 2 && (
           <Step2Permissions 
             data={formData} 
             onNext={handleNext}
             onBack={handleBack}
           />
         )}
-        {currentStep === 4 && (
+        {currentStep === 3 && (
           <Step3WhyJoin 
             data={formData} 
             onNext={handleNext}
             onBack={handleBack}
           />
         )}
-        {currentStep === 5 && (
+        {currentStep === 4 && (
           <Step4Features 
             data={formData} 
             onNext={handleNext}
             onBack={handleBack}
           />
         )}
-        {currentStep === 6 && (
+        {currentStep === 5 && (
           <Step5AccountDetails 
             data={formData} 
             onNext={handleNext}
