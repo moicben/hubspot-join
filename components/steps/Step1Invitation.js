@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import styles from '../../styles/Step.module.css'
-
+ 
 export default function Step1Invitation({ data, onNext }) {
   const [companyInfo, setCompanyInfo] = useState(data?.companyInfo || {
     name: null,
