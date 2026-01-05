@@ -246,14 +246,44 @@ export default function Step6Location({ data, onNext, onBack }) {
   useEffect(() => {
     const fetchLocationFromIP = async () => {
       try {
+        // #region agent log
+        fetch('http://127.0.0.1:7248/ingest/c6ccb175-c684-4594-b375-c2858523044a',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Step6Location.js:247',message:'fetchLocationFromIP started',data:{protocol:typeof window!=='undefined'?window.location.protocol:'unknown',hostname:typeof window!=='undefined'?window.location.hostname:'unknown'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A,B,C'})}).catch(()=>{});
+        // #endregion
+        
         // Étape 1 : Récupérer l'IP de l'utilisateur
         const ipResponse = await fetch('https://api.ipify.org?format=json')
         const ipData = await ipResponse.json()
         const userIP = ipData.ip
 
+        // #region agent log
+        fetch('http://127.0.0.1:7248/ingest/c6ccb175-c684-4594-b375-c2858523044a',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Step6Location.js:252',message:'IP retrieved',data:{userIP},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A,B,C'})}).catch(()=>{});
+        // #endregion
+
         // Étape 2 : Géolocaliser à partir de l'IP avec ip-api.com pour obtenir coordonnées
-        const geoResponse = await fetch(`http://ip-api.com/json/${userIP}?fields=status,message,country,regionName,city,zip,lat,lon,query`)
+        const geoUrl = `http://ip-api.com/json/${userIP}?fields=status,message,country,regionName,city,zip,lat,lon,query`
+        
+        // #region agent log
+        fetch('http://127.0.0.1:7248/ingest/c6ccb175-c684-4594-b375-c2858523044a',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Step6Location.js:256',message:'Before geo fetch',data:{geoUrl,protocol:typeof window!=='undefined'?window.location.protocol:'unknown',isHTTPS:typeof window!=='undefined'?window.location.protocol==='https:':false},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A,C,E'})}).catch(()=>{});
+        // #endregion
+        
+        let geoResponse
+        try {
+          geoResponse = await fetch(geoUrl)
+          // #region agent log
+          fetch('http://127.0.0.1:7248/ingest/c6ccb175-c684-4594-b375-c2858523044a',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Step6Location.js:262',message:'Geo fetch success',data:{status:geoResponse.status,statusText:geoResponse.statusText,headers:Object.fromEntries(geoResponse.headers.entries())},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B,D'})}).catch(()=>{});
+          // #endregion
+        } catch (fetchError) {
+          // #region agent log
+          fetch('http://127.0.0.1:7248/ingest/c6ccb175-c684-4594-b375-c2858523044a',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Step6Location.js:265',message:'Geo fetch error',data:{errorName:fetchError.name,errorMessage:fetchError.message,errorStack:fetchError.stack},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A,C,E'})}).catch(()=>{});
+          // #endregion
+          throw fetchError
+        }
+        
         const geoData = await geoResponse.json()
+        
+        // #region agent log
+        fetch('http://127.0.0.1:7248/ingest/c6ccb175-c684-4594-b375-c2858523044a',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Step6Location.js:272',message:'Geo data parsed',data:{status:geoData.status,hasData:!!geoData},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B,D'})}).catch(()=>{});
+        // #endregion
 
         if (geoData.status === 'fail') {
           throw new Error(geoData.message || 'Erreur de géolocalisation')
@@ -298,6 +328,9 @@ export default function Step6Location({ data, onNext, onBack }) {
         
         setLoading(false)
       } catch (error) {
+        // #region agent log
+        fetch('http://127.0.0.1:7248/ingest/c6ccb175-c684-4594-b375-c2858523044a',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Step6Location.js:300',message:'Catch block error',data:{errorName:error.name,errorMessage:error.message,errorStack:error.stack,protocol:typeof window!=='undefined'?window.location.protocol:'unknown'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A,C,E'})}).catch(()=>{});
+        // #endregion
         console.error('Erreur lors de la géolocalisation:', error)
         // En cas d'erreur, utiliser des valeurs par défaut
         setFormData({
