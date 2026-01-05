@@ -77,7 +77,7 @@ export default function Step2Permissions({ data, onNext, onBack }) {
       <div className={styles.stepHeader}>
         <h1 className={styles.stepTitle}>Permissions du compte</h1>
         <p className={styles.stepDescription}>
-          Voici les permissions dont vous disposerez avec votre accès <strong>HubSpot Pro</strong>
+          Voici les permissions dont vous disposerez avec votre accès<br></br> <strong>HubSpot Pro</strong>
         </p>
       </div>
 

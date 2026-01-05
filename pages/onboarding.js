@@ -42,8 +42,8 @@ export default function Onboarding() {
         <Image 
           src="/hubspot-logo.svg" 
           alt="HubSpot" 
-          width={150}
-          height={40}
+          width={120}
+          height={32}
           className={styles.logo}
         />
       </div>

@@ -60,6 +60,11 @@ export default function OnboardingFlow({ onStepChange }) {
     setFormData(prev => ({ ...prev, companyInfo }))
   }, [])
 
+  // Remonter en haut de l'écran à chaque changement de step
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [currentStep])
+
   const handleNext = (stepData) => {
     setFormData(prev => ({ ...prev, ...stepData }))
     if (currentStep < 10) {

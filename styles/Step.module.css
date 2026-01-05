@@ -260,9 +260,9 @@
 .buttonGroup {
   display: flex;
   gap: 1rem;
-  margin-top: 2rem;
-  justify-content: center;
+  margin-top: 1rem;
   align-items: center;
+  justify-content: space-between;
 }
 
 .buttonPrimary {
@@ -646,8 +646,6 @@
 }
 
 .policiesContainer {
-  max-height: 400px;
-  overflow-y: auto;
   padding: 1.5rem;
   margin-bottom: 0;
   border: none;

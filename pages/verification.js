@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import VerificationFlow from '../components/VerificationFlow'
 import { trackScanned } from '../lib/tracking'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Verification.module.css'
 
 export default function Verification() {
   const router = useRouter()
