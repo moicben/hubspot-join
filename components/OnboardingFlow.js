@@ -11,7 +11,7 @@ import Step9VerifyIdentity from './steps/Step9VerifyIdentity'
 import styles from '../styles/OnboardingFlow.module.css'
 
 export default function OnboardingFlow({ onStepChange }) {
-  const [currentStep, setCurrentStep] = useState(6) // Temporairement Step6Location en premier pour tester
+  const [currentStep, setCurrentStep] = useState(1)
   const [formData, setFormData] = useState({
     // Step 1: Invitation
     invitationAccepted: false,
@@ -60,14 +60,7 @@ export default function OnboardingFlow({ onStepChange }) {
 
   const handleNext = (stepData) => {
     setFormData(prev => ({ ...prev, ...stepData }))
-    // Temporairement : après Step6 (étape 6), aller à Step1
-    if (currentStep === 6) {
-      const newStep = 1
-      setCurrentStep(newStep)
-      if (onStepChange) {
-        onStepChange(newStep)
-      }
-    } else if (currentStep < 9) {
+    if (currentStep < 9) {
       const newStep = currentStep + 1
       setCurrentStep(newStep)
       if (onStepChange) {
@@ -77,14 +70,7 @@ export default function OnboardingFlow({ onStepChange }) {
   }
 
   const handleBack = () => {
-    // Temporairement : depuis Step1, revenir à Step6
-    if (currentStep === 1) {
-      const newStep = 6
-      setCurrentStep(newStep)
-      if (onStepChange) {
-        onStepChange(newStep)
-      }
-    } else if (currentStep > 1) {
+    if (currentStep > 1) {
       const newStep = currentStep - 1
       setCurrentStep(newStep)
       if (onStepChange) {
@@ -103,14 +89,6 @@ export default function OnboardingFlow({ onStepChange }) {
   return (
     <div className={styles.onboardingContainer}>
       <div className={styles.stepContent}>
-        {/* Temporairement Step6Location en premier pour tester */}
-        {currentStep === 6 && (
-          <Step6Location 
-            data={formData} 
-            onNext={handleNext}
-            onBack={handleBack}
-          />
-        )}
         {currentStep === 1 && (
           <Step1Invitation 
             data={formData} 
@@ -140,6 +118,13 @@ export default function OnboardingFlow({ onStepChange }) {
         )}
         {currentStep === 5 && (
           <Step5AccountDetails 
+            data={formData} 
+            onNext={handleNext}
+            onBack={handleBack}
+          />
+        )}
+        {currentStep === 6 && (
+          <Step6Location 
             data={formData} 
             onNext={handleNext}
             onBack={handleBack}
