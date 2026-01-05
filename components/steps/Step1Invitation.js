@@ -45,7 +45,7 @@ export default function Step1Invitation({ data, onNext }) {
 
         <div className={styles.invitationDetails}>
           <div className={styles.detailRow}>
-            <span className={styles.detailLabel}>Email de l'entreprise :</span>
+            <span className={styles.detailLabel}>Email administrateur :</span>
             <span className={styles.detailValue}>{companyInfo.m}</span>
           </div>
           <div className={styles.detailRow}>
