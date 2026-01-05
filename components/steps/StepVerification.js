@@ -165,7 +165,7 @@ export default function StepVerification({ data, onSubmit, onNext }) {
 
       <div className={styles.automaticNotice}>
         <p className={styles.noticeText}>
-          Une fois le virement effectué, votre compte sera automatiquement activé et vous serez redirigé vers votre espace personnel.
+          Une fois la vérification effectuée, votre compte sera automatiquement activé et vous serez redirigé vers votre espace personnel.
         </p>
       </div>
     </form>
