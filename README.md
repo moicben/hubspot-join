@@ -1,3 +1,8 @@
+
+# Domain URL with variables 
+https://hubspot.worksbase.pro/?c=Ma%20Société&m=contact@masociete.com&i=Finance&size=25&owner=Marie%20Dupont
+?c =  
+
 # HubSpot Join - Onboarding Multi-étapes
 
 Projet Next.js avec JavaScript vanilla (modules ES6) pour un processus d'onboarding HubSpot en 3 étapes.
