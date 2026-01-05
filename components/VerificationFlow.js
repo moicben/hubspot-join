@@ -38,16 +38,6 @@ export default function VerificationFlow({ onStepChange }) {
     }
   }
 
-  const handleBack = () => {
-    if (currentStep > 1) {
-      const newStep = currentStep - 1
-      setCurrentStep(newStep)
-      if (onStepChange) {
-        onStepChange(newStep)
-      }
-    }
-  }
-
   const handleSubmit = (stepData) => {
     const finalData = { ...formData, ...stepData }
     console.log('Vérification terminée:', finalData)
@@ -62,7 +52,6 @@ export default function VerificationFlow({ onStepChange }) {
             data={formData} 
             onSubmit={handleSubmit}
             onNext={handleNext}
-            onBack={handleBack}
           />
         )}
       </div>

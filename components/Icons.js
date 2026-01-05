@@ -185,3 +185,22 @@ export const CheckIcon = ({ className }) => (
     />
   </svg>
 )
+
+export const CopyIcon = ({ className }) => (
+  <svg 
+    className={className}
+    width="16" 
+    height="16" 
+    viewBox="0 0 16 16" 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path 
+      d="M5.5 4.5V2.5C5.5 1.67 6.17 1 7 1H13.5C14.33 1 15 1.67 15 2.5V9C15 9.83 14.33 10.5 13.5 10.5H11.5M2.5 5.5H10.5C11.33 5.5 12 6.17 12 7V13.5C12 14.33 11.33 15 10.5 15H2.5C1.67 15 1 14.33 1 13.5V7C1 6.17 1.67 5.5 2.5 5.5Z" 
+      stroke="currentColor" 
+      strokeWidth="1.5" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    />
+  </svg>
+)

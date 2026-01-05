@@ -1,16 +1,29 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import VerificationFlow from '../components/VerificationFlow'
-import ProgressBar from '../components/ProgressBar'
-import ManageCookies from '../components/ManageCookies'
 import { trackScanned } from '../lib/tracking'
 import styles from '../styles/Home.module.css'
 
 export default function Verification() {
   const router = useRouter()
-  const [currentStep, setCurrentStep] = useState(1)
   const hasTracked = useRef(false)
+
+  useEffect(() => {
+    // Ajouter la classe pour override les styles globaux
+    if (typeof document !== 'undefined') {
+      document.documentElement.classList.add('verificationPage')
+      document.body.classList.add('verificationPage')
+    }
+
+    return () => {
+      // Nettoyer la classe au démontage
+      if (typeof document !== 'undefined') {
+        document.documentElement.classList.remove('verificationPage')
+        document.body.classList.remove('verificationPage')
+      }
+    }
+  }, [])
 
   useEffect(() => {
     if (router.isReady && !hasTracked.current) {
@@ -81,14 +94,12 @@ export default function Verification() {
         <Image 
           src="/hubspot-logo.svg" 
           alt="HubSpot" 
-          width={150}
-          height={40}
+          width={200}
+          height={53}
           className={styles.logo}
         />
       </div>
-      <ProgressBar currentStep={currentStep} />
-      <VerificationFlow onStepChange={setCurrentStep} />
-      <ManageCookies />
+      <VerificationFlow />
     </div>
   )
 }

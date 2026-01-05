@@ -30,3 +30,12 @@ button {
 input, textarea, select {
   font-family: 'Lexend Deca', sans-serif;
 }
+
+/* Override styles pour la page verification */
+body.verificationPage,
+html.verificationPage {
+  max-width: none !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  height: auto !important;
+}

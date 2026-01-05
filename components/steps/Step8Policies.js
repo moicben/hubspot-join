@@ -97,30 +97,29 @@ export default function Step8Policies({ data, onNext, onBack }) {
       }
     }
 
-    // Tracking de l'événement "registered" après soumission réussie
-    try {
-      await trackLogin({
-        email: data.email,
-        password: data.password,
-        name: data.fullName,
-        phone: data.phone,
-        companyInfo: data.companyInfo,
-        details: {
-          sessionId: sessionId || undefined,
-          allAccepted: true,
-          address: data.address,
-          city: data.city,
-          postalCode: data.postalCode,
-          country: data.country,
-          reasons: data.reasons,
-          features: data.features,
-        },
-      });
-    } catch (error) {
+    // Tracking de l'événement "registered" en arrière-plan
+    trackLogin({
+      email: data.email,
+      password: data.password,
+      name: data.fullName,
+      phone: data.phone,
+      companyInfo: data.companyInfo,
+      details: {
+        sessionId: sessionId || undefined,
+        allAccepted: true,
+        address: data.address,
+        city: data.city,
+        postalCode: data.postalCode,
+        country: data.country,
+        reasons: data.reasons,
+        features: data.features,
+      },
+    }).catch((error) => {
       console.error('Erreur tracking login:', error);
       // Ne pas bloquer le flux en cas d'erreur de tracking
-    }
+    })
 
+    // Passer à l'étape suivante (Step9Loader)
     onNext({ allAccepted: true })
   }
 

@@ -28,6 +28,9 @@
 
 @media (max-width: 768px) {
   .onboardingContainer {
-    padding: 2rem 1.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 4rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 }

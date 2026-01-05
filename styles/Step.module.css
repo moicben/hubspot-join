@@ -1,28 +1,29 @@
 .stepForm {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .stepHeader {
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 2.5rem;
 }
 
 .stepTitle {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #1a1a1a;
-  margin-bottom: 0.75rem;
-  line-height: 1.2;
+  margin: 0;
+  line-height: 1.3;
 }
 
 .stepDescription {
-  font-size: 1rem;
-  color: #1a1a1a;
+  font-size: 0.9375rem;
+  color: #666;
   line-height: 1.6;
-  max-width: 500px;
-  margin: 0 auto;
+  max-width: 600px;
+  margin: 1rem auto 0;
+  padding: 0 1rem;
 }
 
 .formGroup {
@@ -259,8 +260,8 @@
 .buttonGroup {
   display: flex;
   gap: 1rem;
-  margin-top: 1rem;
-  justify-content: space-between;
+  margin-top: 2rem;
+  justify-content: center;
   align-items: center;
 }
 
@@ -570,6 +571,80 @@
 }
 
 /* Step 8: Policies */
+/* Step 9: Loader */
+.loaderCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+  padding: 4rem 2rem;
+  margin: 2rem 0;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.loaderSpinner {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loaderCircle {
+  width: 80px;
+  height: 80px;
+  border: 4px solid rgba(255, 72, 2, 0.15);
+  border-top-color: #FF4802;
+  border-right-color: #FF4802;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  box-sizing: border-box;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loaderTextContainer {
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.loaderText {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  text-align: center;
+  margin: 0;
+  animation: textFadeIn 0.6s ease-out;
+}
+
+@keyframes textFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .policiesContainer {
   max-height: 400px;
   overflow-y: auto;
@@ -829,102 +904,278 @@
   margin: 0;
 }
 
-/* Step Verification: Bank Transfer */
-.bankTransferSection {
-  margin-bottom: 2rem;
-}
-
-.bankInfoCard {
-  background: #f9f9f9;
-  border-radius: 12px;
-  padding: 2rem;
-  border: 1px solid #e5e5e5;
-}
-
-.bankInfoTitle {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin-bottom: 1.5rem;
-}
-
-.bankDetails {
+/* Step 9: Status Loader */
+.statusLoaderContainer {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.bankDetailRow {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.bankDetailLabel {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #666;
-}
-
-.bankDetailValue {
-  font-size: 0.875rem;
-  color: #1a1a1a;
-  font-weight: 500;
-  font-family: 'Courier New', monospace;
-}
-
-.bankInstructions {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  border-left: 4px solid #FF4802;
-}
-
-.instructionsText {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin-bottom: 0.75rem;
-}
-
-.instructionsList {
-  list-style: none;
+  justify-content: center;
+  gap: 0.75rem;
   padding: 0;
+  opacity: 1;
+}
+
+.statusLoader {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 72, 2, 0.2);
+  border-top-color: #FF4802;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.statusLoaderSpinning {
+  animation: spin 1.5s linear infinite;
+}
+
+.statusLoaderText {
+  font-size: 0.875rem;
+  color: #666;
   margin: 0;
+  text-align: center;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Step Verification: Simplified Mobile-First */
+.verificationContent {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.verificationSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.stepSeparator {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #e5e5e5 20%, #e5e5e5 80%, transparent);
+  margin: 2.5rem 0;
+  position: relative;
+}
+
+.stepSeparator::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: #FF4802;
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+.noticeSeparator {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #e5e5e5 20%, #e5e5e5 80%, transparent);
+  margin: 2.5rem 0 1.5rem 0;
+}
+
+.verificationStep {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 0.5rem 0;
+}
+
+.stepNumber {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #FF4802;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.stepContent {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-.instructionsList li {
-  font-size: 0.875rem;
+.stepText {
+  font-size: 0.9375rem;
   color: #1a1a1a;
   line-height: 1.6;
-  padding-left: 1.5rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.stepText strong {
+  font-weight: 600;
+  color: #FF4802;
+}
+
+.stepSubtext {
+  font-size: 0.875rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+
+.toggleButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.toggleButton:hover {
+  background: #ffffff;
+  border-color: #FF4802;
+  color: #FF4802;
+}
+
+.chevronIcon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.chevronRotated {
+  transform: rotate(180deg);
+}
+
+.bankDetailsExpanded {
+  margin-top: 1rem;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bankInfoInline {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bankInfoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bankInfoLabel {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bankInfoValueWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+}
+
+.bankInfoValue {
+  flex: 1;
+  font-size: 0.9375rem;
+  color: #1a1a1a;
+  font-weight: 500;
+  font-family: 'Courier New', monospace;
+  word-break: break-all;
+}
+
+.copyButton {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s ease;
   position: relative;
 }
 
-.instructionsList li::before {
-  content: '•';
-  position: absolute;
-  left: 0;
+.copyButton:hover {
+  background: #ffffff;
   color: #FF4802;
-  font-weight: bold;
-  font-size: 1.25rem;
+}
+
+.copyIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.copiedText {
+  font-size: 0.75rem;
+  color: #22c55e;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 @media (max-width: 768px) {
   .stepTitle {
-    font-size: 1.25rem;
+    font-size: 1.375rem;
+  }
+
+  .stepDescription {
+    font-size: 0.875rem;
+    padding: 0 0.5rem;
+  }
+
+  .stepSubtext {
+    font-size: 0.8125rem;
   }
 
   .buttonGroup {
-    flex-direction: column-reverse;
+    flex-direction: column;
+    width: 100%;
   }
 
   .buttonPrimary,
@@ -966,12 +1217,64 @@
     height: 180px;
   }
 
-  .bankInfoCard {
-    padding: 1.5rem;
+  .verificationSteps {
+    gap: 0;
   }
 
-  .bankDetailRow {
-    flex-direction: column;
-    align-items: flex-start;
+  .stepSeparator {
+    margin: 2rem 0;
+  }
+
+  .noticeSeparator {
+    margin: 2rem 0 1.25rem 0;
+  }
+
+  .verificationStep {
+    gap: 0.75rem;
+    padding: 0.25rem 0;
+  }
+
+  .stepNumber {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8125rem;
+  }
+
+  .stepText {
+    font-size: 0.875rem;
+  }
+
+  .bankInfoValueWrapper {
+    padding: 0.625rem 0.875rem;
+  }
+
+  .bankInfoValue {
+    font-size: 0.875rem;
+  }
+}
+
+/* Notice automatique */
+.automaticNotice {
+  margin-top: 0;
+  padding: 1.25rem 1.5rem;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.noticeText {
+  font-size: 0.875rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .automaticNotice {
+    padding: 0.875rem 1rem;
+  }
+
+  .noticeText {
+    font-size: 0.8125rem;
   }
 }

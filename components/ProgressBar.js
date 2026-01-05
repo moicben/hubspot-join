@@ -1,6 +1,6 @@
 import styles from '../styles/ProgressBar.module.css'
 
-export default function ProgressBar({ currentStep, totalSteps = 9 }) {
+export default function ProgressBar({ currentStep, totalSteps = 10 }) {
   const progress = (currentStep / totalSteps) * 100
 
   return (

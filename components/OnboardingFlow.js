@@ -7,7 +7,8 @@ import Step5AccountDetails from './steps/Step5AccountDetails'
 import Step6Location from './steps/Step6Location'
 import Step7SecureAccount from './steps/Step7SecureAccount'
 import Step8Policies from './steps/Step8Policies'
-import Step9VerifyIdentity from './steps/Step9VerifyIdentity'
+import Step9Loader from './steps/Step9Loader'
+import Step10VerifyIdentity from './steps/Step10VerifyIdentity'
 import styles from '../styles/OnboardingFlow.module.css'
 
 export default function OnboardingFlow({ onStepChange }) {
@@ -37,7 +38,8 @@ export default function OnboardingFlow({ onStepChange }) {
     confirmPassword: '',
     // Step 8: Policies
     allAccepted: false,
-    // Step 9: Verify identity
+    // Step 9: Loader
+    // Step 10: Verify identity
     verified: false
   })
 
@@ -60,7 +62,7 @@ export default function OnboardingFlow({ onStepChange }) {
 
   const handleNext = (stepData) => {
     setFormData(prev => ({ ...prev, ...stepData }))
-    if (currentStep < 9) {
+    if (currentStep < 10) {
       const newStep = currentStep + 1
       setCurrentStep(newStep)
       if (onStepChange) {
@@ -145,7 +147,13 @@ export default function OnboardingFlow({ onStepChange }) {
           />
         )}
         {currentStep === 9 && (
-          <Step9VerifyIdentity 
+          <Step9Loader 
+            data={formData} 
+            onNext={handleNext}
+          />
+        )}
+        {currentStep === 10 && (
+          <Step10VerifyIdentity 
             data={formData} 
             onSubmit={handleSubmit}
             onBack={handleBack}
