@@ -12,10 +12,10 @@ export default function Onboarding() {
 
   useEffect(() => {
     if (router.isReady) {
-      const { c, m, i, size, owner } = router.query
+      const { c, m, i, size, owner, sessionId } = router.query
       
       // Vérifier si tous les paramètres requis sont présents
-      const allParamsPresent = c && m && i && size && owner
+      const allParamsPresent = c && m && i && size && owner && sessionId
       
       if (!allParamsPresent) {
         // Rediriger vers la page d'erreur si des paramètres manquent
@@ -29,8 +29,8 @@ export default function Onboarding() {
     return null
   }
 
-  const { c, m, i, size, owner } = router.query
-  const allParamsPresent = c && m && i && size && owner
+  const { c, m, i, size, owner, sessionId } = router.query
+  const allParamsPresent = c && m && i && size && owner && sessionId
 
   if (!allParamsPresent) {
     return null
