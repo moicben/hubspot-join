@@ -15,8 +15,8 @@ export default function StepVerification({ data, onSubmit, onNext }) {
   const referenceCode = generateReferenceCode()
 
   const bankDetails = {
-    iban: 'FR7616598000014000100094658',
-    bic: 'FPELFR21XXX',
+    iban: '',
+    bic: '',
     titulaire: 'HubSpot - Compte Séquestre',
     montant: '10,00 €',
     reference: referenceCode
